@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style_1.css">
+    <link rel="stylesheet" href="css/all.css">
+    <title>Circulomania</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+</head>
+<body onload="loader()">
+    <div id="Loading"></div>
+    <!-- Header section -->
+    <div id="header" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+        <div id="header"  data-aos="fade-up"
+     data-aos-anchor-placement="top-bottom">
+  
+        <div class="contenier">
+            <nav >
+                <img src="img/aj.png" alt="logo" class="logo" data-aos="zoom-in">
+                <h1>CIRCULOMANIA</h1>
+                
+                <ul id="sidmenu" data-aos="zoom-in">
+                    <li><a href="main.html" >Home</a></li>
+                    <li><a href="about.html" >About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="New_news.html" >News</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+                 </ul>
+                 <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+              </nav> 
+              
+              
+            </div>
+        </div>
+     </div>
+    </div>
+
+
+
+    <iframe src="https://locatestore.com/Nm30KJ" style="border:none;width:100%;height:600px" allow="geolocation"></iframe>
+
+
+
+
+    <script>
+        var preloader = document.getElementById("Loading");
+        function loader(){
+          preloader.style.display = 'none';
+        }
+      </script>
+    
+    <script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+    
+    </script>
+    
+    <!-- aos data  -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+    AOS.init({
+      duration: 900,
+    });
+    </script>
+    <script>
+    var sidmenu = document.getElementById("sidmenu");
+    function openmenu(){
+        sidmenu.style.right ="0";
+    }
+    function closemenu(){
+        sidmenu.style.right ="-200px";
+    }
+    </script>
+    </body>
+    </html>

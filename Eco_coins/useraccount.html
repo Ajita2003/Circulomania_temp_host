@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Authentication with Points</title>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>QR Code Authentication with Points</h1>
+    
+    <!-- Login Form -->
+    <div id="loginContainer">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Log In</button>
+    </div>
+    
+    <!-- QR Code Authentication -->
+    <div id="authContainer" style="display: none;">
+        <label for="qrCodeLink">Enter QR Code URL:</label>
+        <input type="text" id="qrCodeLink" placeholder="QR Code URL">
+        <button onclick="authenticateQRCode()">Authenticate QR Code</button>
+    </div>
+
+    <div id="authMessage"></div>
+    <div id="qrcode"></div>
+
+    <div>
+        <button onclick="addPoints()">Add Points</button>
+    </div>
+
+    <div id="pointsDisplay">Account Points: <span id="points">0</span></div>
+
+    <script>
+        let authenticated = false;
+let qrCodeAuthenticated = false;
+let points = 0;
+let loggedInUser = null;
+
+function login() {
+    // Simulate user login here
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (username === 'demo' && password === 'password') {
+        loggedInUser = username;
+        document.getElementById('loginContainer').style.display = 'none';
+        document.getElementById('authContainer').style.display = 'block';
+    } else {
+        alert('Login failed. Invalid credentials.');
+    }
+}
+
+function authenticateQRCode() {
+    // Simulate authentication logic here
+    if (qrCodeAuthenticated || !loggedInUser) {
+        return;
+    }
+
+    const qrCodeLink = document.getElementById('qrCodeLink').value;
+    if (qrCodeLink) {
+        if (qrCodeLink === "data:image/png;base64,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") {
+            authenticated = true;
+            displayAuthMessage('QR Code authenticated!', true);
+            qrCodeAuthenticated = true;
+        } else {
+            displayAuthMessage('Authentication failed. Invalid QR Code.', false);
+            qrCodeAuthenticated = false;
+        }
+    }
+}
+
+function displayAuthMessage(message, success) {
+    const authMessageElement = document.getElementById('authMessage');
+    authMessageElement.innerHTML = message;
+    authMessageElement.style.color = success ? 'green' : 'red';
+}
+
+function addPoints() {
+    if (authenticated && qrCodeAuthenticated) {
+        // Simulate adding points to the user's account
+        points += 10;
+        document.getElementById('points').textContent = points;
+
+        // Reset QR code authenticated flag
+        qrCodeAuthenticated = false;
+    } else if (!authenticated) {
+        displayAuthMessage('Please authenticate using QR code first.', false);
+    } else {
+        displayAuthMessage('Please authenticate QR code and then add points.', false);
+    }
+}
+
+    </script>
+</body>
+</html>

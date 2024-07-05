@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Points Redemption</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Redemption Page</h1>
+    <p>Your points: <span id="points">0</span></p>
+    <button class="redeem-button">Redeem Points</button>
+
+    <script>
+        // Retrieve points from localStorage
+        const storedPoints = localStorage.getItem('points');
+        const pointsSpan = document.getElementById('points');
+
+        if (storedPoints) {
+            pointsSpan.textContent = storedPoints;
+        }
+
+        const redeemButton = document.querySelector('.redeem-button');
+        redeemButton.addEventListener('click', () => {
+            const currentPoints = parseInt(pointsSpan.textContent);
+
+            if (currentPoints >= 10) {
+                // Deduct points for redemption
+                pointsSpan.textContent = currentPoints - 10;
+
+                // Update points in localStorage
+                localStorage.setItem('points', pointsSpan.textContent);
+            } else {
+                alert("Not enough points for redemption!");
+            }
+        });
+    </script>
+</body>
+</html>

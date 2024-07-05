@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redemption Page</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .redemption-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+  }
+
+  .redemption-container h2 {
+    margin-bottom: 15px;
+  }
+
+  .points {
+    font-size: 18px;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+
+  .redeem-button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .redeem-button:hover {
+    background-color: #218838;
+  }
+</style>
+</head>
+<body>
+  <div class="redemption-container">
+    <h2>Points Redemption</h2>
+    <div class="points">Your Points: <span id="points">150</span></div>
+    <button class="redeem-button">Redeem Points</button>
+  </div>
+
+
+  <script>
+    const redeemButton = document.querySelector('.redeem-button');
+    const pointsSpan = document.getElementById('points');
+    let currentPoints = 150; // Initial points value
+
+    redeemButton.addEventListener('click', () => {
+      const pointsToRedeem = 50; // Points to be deducted
+
+      if (currentPoints >= pointsToRedeem) {
+        currentPoints -= pointsToRedeem;
+        pointsSpan.textContent = currentPoints;
+
+        // You can also include an API call here to update points on the server
+      } else {
+        alert("Not enough points to redeem.");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Green coins</title>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url("graham-holtshausen-fUnfEz3VLv4-unsplash.jpg"); /* Replace with the path to your image */
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+      }
+      s .container {
+        background-color: #fff;
+        align-self: center;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 100px;
+        position: center;
+        font-weight: 500px;
+        margin-right: 20px;
+        font-size: 50px;
+        color: #c6e3d5;
+      }
+
+      label {
+        text-align: center;
+        display: block;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #f5f3f3;
+        width: 50%;
+      }
+
+      input[type="text"] {
+        width: 50%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #56c9b4;
+        border-radius: 3px;
+      }
+
+      button {
+        width: 50%;
+        padding: 10px;
+        background-color: #7bd8c7;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        padding: 10px 20px;
+        align-items: center;
+        margin: 5px;
+      }
+
+      button:hover {
+        background-color: #15a474;
+      }
+
+      #authMessage,
+      #qrcode {
+        margin-top: 20px;
+        font-weight: bold;
+        color: #035238;
+      }
+
+      .authenticate-button,
+      .redeem-button {
+        align-items: center;
+        width: 50%;
+        padding: 12px;
+        background-color: #53ba98;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      .authenticate-button:hover,
+      .redeem-button:hover {
+        background-color: #18b56f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topic"><h1>GREEN COINS</h1></div>
+
+    <div>
+      <label for="qrCodeLink">Enter QR Code URL:</label>
+      <input type="text" id="qrCodeLink" placeholder="QR Code URL" />
+      <button onclick="authenticateQRCode()">Authenticate QR Code</button>
+    </div>
+
+    <div id="authMessage"></div>
+    <div id="qrcode"></div>
+
+    <button class="authenticate-button">Authenticate (+10 Points)</button>
+    <br />
+    <button class="redeem-button">Redeem Points</button>
+
+    <script>
+      let authenticated = false;
+
+      function authenticateQRCode() {
+        const qrCodeLink = document.getElementById("qrCodeLink").value;
+        if (qrCodeLink) {
+          // Simulate authentication logic here
+          if (
+            qrCodeLink ===
+            "data:image/png;base64,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"
+          ) {
+            authenticated = true;
+            displayAuthMessage("QR Code authenticated!", true);
+          } else {
+            displayAuthMessage(
+              "Authentication failed. Invalid QR Code.",
+              false
+            );
+          }
+        }
+      }
+
+      function displayAuthMessage(message, success) {
+        const authMessageElement = document.getElementById("authMessage");
+        authMessageElement.innerHTML = message;
+        authMessageElement.style.color = success ? "green" : "red";
+      }
+
+      const authenticateButton = document.querySelector(".authenticate-button");
+      const pointsSpan = document.getElementById("points");
+
+      authenticateButton.addEventListener("click", () => {
+        if (!authenticated) {
+          authenticated = true;
+          const currentPoints = parseInt(pointsSpan.textContent);
+          pointsSpan.textContent = currentPoints + 10;
+        }
+      });
+
+      const redeemButton = document.querySelector(".redeem-button");
+      redeemButton.addEventListener("click", () => {
+        // Redirect to redemption page...
+        window.location.href = "redemption.html";
+      });
+    </script>
+  </body>
+</html>

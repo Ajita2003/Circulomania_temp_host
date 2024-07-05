@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Authenticated Page</title>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+  
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    .authenticated-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+  
+    .authenticated-container h2 {
+      margin-bottom: 15px;
+    }
+  
+    .authenticated-container p {
+      font-size: 18px;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+  
+    .authenticate-button,
+    .redeem-button {
+      background-color: #28a745;
+      color: #fff;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+    }
+  
+    .authenticate-button:hover,
+    .redeem-button:hover {
+      background-color: #218838;
+    }
+  </style>
+  
+</head>
+<body>
+  <div class="header">
+    <h1>Welcome to Our Website</h1>
+  </div>
+  <div class="authenticated-container">
+    <h2>Authenticated Page</h2>
+    <p>Your Points: <span id="points">150</span></p>
+    <button class="authenticate-button">Authenticate (+10 Points)</button>
+    <a class="redeem-button" href="redemption.html">Redeem Points</a>
+  </div>
+  <script>
+    const authenticateButton = document.querySelector('.authenticate-button');
+    const pointsSpan = document.getElementById('points');
+    let authenticated = false;
+    
+    authenticateButton.addEventListener('click', () => {
+      if (!authenticated) {
+        authenticated = true;
+        const currentPoints = parseInt(pointsSpan.textContent);
+        pointsSpan.textContent = currentPoints + 10;
+      }
+    });
+  </script>
+</body>
+</html>

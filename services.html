@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style_1.css">
+    <link rel="stylesheet" href="css/all.css">
+    <title>my profile</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+</head>
+<body onload="loader()">
+    <div id="Loading"></div>
+    <!-- Header section -->
+    <div id="header" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+        <div id="header"  data-aos="fade-up"
+     data-aos-anchor-placement="top-bottom">
+  
+        <div class="contenier">
+            <nav >
+                <img src="img/aj.png" alt="logo" class="logo" data-aos="zoom-in">
+                <h1>CIRCULOMANIA</h1>
+                
+                <ul id="sidmenu" data-aos="zoom-in">
+                    <li><a href="main.html" >Home</a></li>
+                    <li><a href="about.html" >About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="New_news.html" >News</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+                 </ul>
+                 <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+              </nav> 
+              
+              
+            </div>
+        </div>
+     </div>
+    </div>
+
+<div id="services" class="services-section">
+    <div class="container">
+        <style>
+            .section-title {
+              
+              padding: 10px;
+              width: 250px;
+              height: 100px;
+              text-align: center;
+              margin: 50px auto;
+              background-color: #033210;
+            }
+          </style>
+          
+        <h2 class="section-title" data-aos="fade-up">Our Services</h2>
+        <div class="services-list">
+            <div class="service-item" data-aos="fade-right">
+                <img src="img/lca.jpg" alt="LCA Calculator">
+                <h3>LCA Calculator</h3>
+                <p>Empowering mindful consumption with eco-conscious choices</p>
+                <a href="LCA/lca.html" class="learn-more">Calculate Here!</a>
+            </div>
+            <div class="service-item" data-aos="fade-right">
+                <img src="img/trash.png" alt="LCA Calculator">
+                <h3>Trash seeker</h3>
+                <p>Transforming<br> Waste into Opportunity<br></p> 
+                <a href="recycler_locator.html" class="learn-more">Recycle Here!</a>
+            </div>
+            <div class="service-item" data-aos="fade-right">
+                <img src="img/ecocoins.png" alt="LCA Calculator">
+                <h3>Green coins</h3>
+                <p>The ultimate <br>Enviro-cash</p>
+                <a href="Eco_coins/first.html" class="learn-more">Claim Here!</a>
+            </div>
+            <div class="service-item" data-aos="fade-right">
+                <img src="img/tcc.jpg" alt="LCA Calculator">
+                <h3>Thrift care corner</h3>
+                <h4>Temporarily Not available</h4>
+                <p>Sharing Joy Through Sustainable Giving</p>
+                <a href="main.html" class="learn-more">Shop & Sell Here!</a>
+            </div>
+            <!-- Add more service items here -->
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var preloader = document.getElementById("Loading");
+    function loader(){
+      preloader.style.display = 'none';
+    }
+  </script>
+
+<script>
+var tablinks = document.getElementsByClassName("tab-links");
+var tabcontents = document.getElementsByClassName("tab-contents");
+function opentab(tabname){
+    for(tablink of tablinks){
+        tablink.classList.remove("active-link");
+    }
+    for(tabcontent of tabcontents){
+        tabcontent.classList.remove("active-tab");
+    }
+    event.currentTarget.classList.add("active-link");
+    document.getElementById(tabname).classList.add("active-tab");
+}
+
+</script>
+
+<!-- aos data  -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+AOS.init({
+  duration: 900,
+});
+</script>
+<script>
+var sidmenu = document.getElementById("sidmenu");
+function openmenu(){
+    sidmenu.style.right ="0";
+}
+function closemenu(){
+    sidmenu.style.right ="-200px";
+}
+</script>
+</body>
+</html>

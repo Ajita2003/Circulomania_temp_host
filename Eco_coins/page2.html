@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Authentication (Client-side)</title>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#authMessage {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #333333;
+}
+
+#qrcode {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Green Coins</h1>
+    <div>
+        <label for="qrCodeLink">Enter QR Code URL:</label>
+        <input type="text" id="qrCodeLink" placeholder="QR Code URL">
+        <button onclick="authenticateQRCode()">Authenticate QR Code</button>
+    </div>
+
+    <div id="authMessage"></div>
+    <div id="qrcode"></div>
+
+    <button class="authenticate-button">Authenticate (+10 Points)</button>
+    <button class="redeem-button">Redeem Points</button>
+
+    <script>
+        let authenticated = false;
+
+        function authenticateQRCode() {
+            const qrCodeLink = document.getElementById('qrCodeLink').value;
+            if (qrCodeLink) {
+                // Simulate authentication logic here
+                if (qrCodeLink === "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAABhJJREFUeF7tneGWozoMg6fv/9BzDz3nbmlLiD5HgZbR/l0RHFmWHWC7t5+fn9+fL/jz+7sd5u12Q9G31kGLdMA0Jue96VoLexEAZS0CMDMmLBcHEEgqQOIABdJ6l6QF9Bgq/H0coECacEkcQCCJQi7hAEdMy1vEtsij8RyRBOpKdA9UeC38HhdNB/i0YGk8EcBDDhGAq5Re1okDTCA2LcBPahzAz+l9xTjABGLjAH5SrQ7gGq5mV49LSJV00HufxemyN3wKOCtY1ymArhMBvDAQAfQlEQfoczR9gKJJEEKWIfTeZxVVWoCcUgaMAAS+MgRqT+oEKv9BKKeXcABabYTQ/7H0Hi48jTUCWDHmnPZdCa0kiIigsv7XHwNpcgihcYANts6aWKm64wDajBEHECyBuowLL4T2BKFFkiFQZNiV0EqCxBDvsMr6X+8ALYJo0u7VYPo3BvTe9L6tPUcAK2ZoEiKAF1lV1DTTruhQFwH8kSEwLeDBQKVoMwMIbcPVcysJmumqlzgFxAEOdgCiyAq20rvJffYmbjpnOMVH9kCx1k/C6M0pPgKgjPXxEYDY5+MAK6JcZPT1+YyIA1DG+vg4QBygqRJ8DOzrbQwRBxjjb+vqkgP4wxhbkZ6hKX6Jjl5D8WMMzLn6sr8PUEkOvYbi56RwbNUIQBh8aVtyvd0bS612dQQQAVzzZ+Iq9kyvoXitJo9FxQH+ugP8nvXE51ihS3ejvfsK1N0igIc2IgCpTq4LigCum1tpZxGARNN1QRHAdXMr7SwCEGg666nYN525XacDynUrfbsvg+gpgAZFq6q1iQjgwQwVWAQgOJsTQhNEK5euHwE4syusRRMUAQyQ6moxQggyJAJYUeVKUGaASTPA7P80iibuzOpxiZUOsq4WUIl/+tvACMBfuZTTvd4VAUxoV3GAFQNUrWkB/beTlNM4gCDIBVLpofLRYOer48wAYoII2fSJ5Z8VgOtRMEnOgqU2RlvDEQKgMdFKp7NExcHwF0GVm2xtJALo9/oIYKA1xAE0T44DDBwD0wI0kW2i0gLSAjaFUbHurYUq69D5Jg4QBxhg4EMcoPUy6FvUTeOkVb6X4dltzKKuziLTfyCCEj6bVBpPBDAoQ0p4BDBIOLw8DgAJW8Nni3UgNP
+                // ...
+                const pointsSpan = document.getElementById('points');
+                if (!authenticated) {
+                    authenticated = true;
+                    const currentPoints = parseInt(pointsSpan.textContent);
+                    pointsSpan.textContent = currentPoints + 10;
+                }
+            }
+        }
+
+        const authenticateButton = document.querySelector('.authenticate-button');
+        const pointsSpan = document.getElementById('points');
+
+        authenticateButton.addEventListener('click', () => {
+            if (!authenticated) {
+                authenticated = true;
+                const currentPoints = parseInt(pointsSpan.textContent);
+                pointsSpan.textContent = currentPoints + 10;
+
+                // Store the updated points in localStorage
+                localStorage.setItem('points', pointsSpan.textContent);
+            }
+        });
+
+        const redeemButton = document.querySelector('.redeem-button');
+        redeemButton.addEventListener('click', () => {
+            // Redirect to redemption page...
+            window.location.href = "redemption.html";
+        });
+
+    </script>
+</body>
+</html>
